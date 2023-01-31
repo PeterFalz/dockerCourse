@@ -1,6 +1,6 @@
 {
-    "name": "dockerCourse",
-    "version": "1.0.2",
+    "name": "dc",
+    "version": "1.0.3",
     "dependencies": {
         "processenv": "^3.0.9"
     }

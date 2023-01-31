@@ -10,7 +10,7 @@ const { processenv } = require('processenv');
 
 // Server 02 ... Express
 const api = express();
-api.use('/', express.static(path.join(__dirname, 'data')));
+api.use('/', express.static(path.join(__dirname, 'public')));
 const server02 = http.createServer(api);
 server02.listen(3002);
 

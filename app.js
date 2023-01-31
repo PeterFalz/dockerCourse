@@ -1,11 +1,23 @@
 'use strict';
 
 const http = require('http');
+
+const express = require('express')
+const path = require('path');
+
 const { processenv } = require('processenv');
 
-const message = processenv('MESSAGE', 'Hello World! #')
 
-const server = http.createServer((req, res) => {
+// Server 02 ... Express
+const api = express();
+api.use('/', express.static(path.join(__dirname, 'data')));
+const server02 = http.createServer(api);
+server02.listen(3002);
+
+
+// Server 01 ... Umgebungsvariable
+const message = processenv('MESSAGE', 'Hello World! #');
+const server01 = http.createServer((req, res) => {
   //res.statusCode = 200;
   //res.setHeader('Content-Type', 'text/plain');
   res.writeHead(200, {'Content-Type': 'text/phtml'});
@@ -13,7 +25,7 @@ const server = http.createServer((req, res) => {
   res.end();
 });
 
-server.listen(3000);
+server01.listen(3001);
 
 /*
 const hostname = '127.0.0.1';

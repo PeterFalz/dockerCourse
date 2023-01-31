@@ -1,20 +1,18 @@
-'use strict';
+import http from 'http';
 
-const http = require('http');
+import express from 'express';
+import path from 'path';
 
-const express = require('express')
-const path = require('path');
-
-const { processenv } = require('processenv');
+import { processenv } from 'processenv';
 
 
 // Server 02 ... Express
 const api = express();
-api.use('/', express.static(path.join(__dirname, 'public')));
+api.use('/', express.static(path.join(__dirname, '..', 'public')));
 const server02 = http.createServer(api);
 server02.listen(3002);
 
-
+// /*
 // Server 01 ... Umgebungsvariable
 const message = processenv('MESSAGE', 'Hello World! #');
 const server01 = http.createServer((req, res) => {
@@ -26,12 +24,4 @@ const server01 = http.createServer((req, res) => {
 });
 
 server01.listen(3001);
-
-/*
-const hostname = '127.0.0.1';
-const port = 3000;
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-*/
+// */

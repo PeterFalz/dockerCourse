@@ -6,6 +6,8 @@ import { processenv } from 'processenv';
 
 // Default-Output Start
 (async () => {
+  console.log( '[' + Date.now().toString() + ' app.ts]>' + 'Begin Default-Output Start' );
+
   const client = new Client({
     host: 'dc-db',              // --- network-alias aus run-Command
     port: 5432,                 // --- Standard-Port
@@ -27,6 +29,7 @@ import { processenv } from 'processenv';
 
 // Server 03 ... Postgres-Gedöhns
 const server03 = http.createServer((req, res) => {
+  console.log( '[' + Date.now().toString() + ' app.ts]>' + 'Call for Server03' );
   var msg = '######';
 
   (async () => {
@@ -52,12 +55,14 @@ const server03 = http.createServer((req, res) => {
     res.end();
   })();
 });
-
 server03.listen(3003);
 
 // /*
 // Server 02 ... Express
 const api = express();
+//api.get('/', (req, res) => {
+//  console.log( '[' + Date.now().toString() + ' app.ts]>' + 'Call for Server02' );
+//});
 api.use('/', express.static(path.join(__dirname, '..', 'public')));
 const server02 = http.createServer(api);
 server02.listen(3002);
@@ -67,6 +72,8 @@ server02.listen(3002);
 // Server 01 ... Umgebungsvariable
 const message = processenv('MESSAGE', 'Hello World! #');
 const server01 = http.createServer((req, res) => {
+  console.log( '[' + Date.now().toString() + ' app.ts]>' + 'Call for Server01' );
+
   //res.statusCode = 200;
   //res.setHeader('Content-Type', 'text/plain');
   res.writeHead(200, {'Content-Type': 'text/html'});

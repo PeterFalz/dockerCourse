@@ -63,9 +63,6 @@ const api = express();
 //api.get('/', (req, res) => {
 //  console.log( '[' + Date.now().toString() + ' app.ts]>' + 'Call for Server02' );
 //});
-api.use(() => {
-  console.log( '[' + Date.now().toString() + ' app.ts]> ' + 'Call for Server02' );
-});
 api.use('/', express.static(path.join(__dirname, '..', 'public')));
 const server02 = http.createServer(api);
 server02.listen(3002);
